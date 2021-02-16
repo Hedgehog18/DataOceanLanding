@@ -6,7 +6,7 @@
     &::before {
         position: absolute;
         content: "";
-        background-image: url('~static/img/footer-pixel-left.png');
+        background-image: url('src/img/footer-pixel-left.png');
         left: 0;
         top: -70px;
         width: 100px;
@@ -16,7 +16,7 @@
     &::after {
         position: absolute;
         content: "";
-        background-image: url('~static/img/footer-pixel-right.png');
+        background-image: url('src/img/footer-pixel-right.png');
         right: 0;
         top: -70px;
         width: 100px;
@@ -39,15 +39,25 @@
             margin-top: $spacer * 2;
         }
     }
-    
+
     @media (min-width: $md) {
         flex-direction: row;
-        
+
         &__item {
             & + & {
                 margin-top: 0;
             }
         }
+    }
+}
+
+.footer-logo {
+    display: block;
+    flex-direction: column;
+    cursor: pointer;
+    &_cpk {
+        margin-top: $spacer * 4;
+        margin-left: auto;
     }
 }
 
@@ -59,14 +69,17 @@
     margin-top: $spacer * 5;
     font-size: $font-size-sm;
     flex-direction: column;
-    
+
     &__slogan {
     }
-    
+
     &__copyright {
         margin-top: $spacer * 2;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
     }
-    
+
     @media (min-width: $md) {
         align-items: flex-end;
         flex-direction: row;

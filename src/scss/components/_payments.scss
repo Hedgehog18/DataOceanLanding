@@ -1,0 +1,85 @@
+.payments {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @media screen and (min-width: $xl) {
+        flex-direction: row;
+    }
+}
+
+.payments_variants{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5%;
+}
+
+.payments_box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // flex-wrap: wrap;
+    @media screen and (min-width: $xl) {
+        flex-direction: row;
+    }
+}
+
+.payments_tariff{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    width: 380px;
+    height: 570px;
+    background: #FFFFFF;
+    border: 1px solid #BECBF2;
+    box-sizing: border-box;
+    border-radius: 15px;
+    transition: transform .3s;
+    margin: auto $spacer;
+    &:hover {
+        transform: scale(1.15);
+    } 
+}
+
+.price {
+    display: flex;
+    height: 61px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 50px;
+    // padding-left: 10%;
+    line-height: 61px;
+    color: #303239;
+    span {
+        font-size: 19px;
+        line-height: 22px;
+    }
+    h2 {
+        font-size: 30px;
+        text-align: center;
+        align-self: center;
+        line-height: normal;
+    } 
+}
+
+.pay_descript{
+    text-align: center;
+    padding: 0 $spacer;
+    height: 81px;
+}
+
+#button-form {
+    height: 48px;
+    width: 165px;
+}
+
+.without-vat {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-right: 6%;
+    padding-top: 3%;
+}

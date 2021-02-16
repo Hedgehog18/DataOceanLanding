@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Data Ocean</title>
-    <link rel="stylesheet" href="static/dist/main.css">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <link rel="shortcut icon" href="static/img/favicon.ico" type="image/x-icon">
+    <script type="module" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.4.0/dist/ionicons/ionicons.js"></script>
 </head>
 <body>
     <div class="landing-dots">
         <header id="header" class="container header">
-            <img src="static/img/logo.png" class="header-logo header__item">
+            <div class="header-logo header__item">
+                <img src="img/logo.svg" class="header-logo_DO js-link-platform">
+                <img src="img/logo_pep.svg" class="header-logo_PEP link-cpk">
+            </div>
             <nav>
                 <a href="#" id="menu-btn" class="menu-btn">
                     <ion-icon name="menu-outline"></ion-icon>
@@ -25,17 +29,21 @@
                         <span lang="uk">Про нас</span>
                         <span lang="en">About us</span>
                     </a>
-                    <a class="navigation__item btn-primary" href="#contact-form">
-                        <span lang="uk">Напишіть нам</span>
-                        <span lang="en">Contact us</span>
+                    <a class="navigation__item btn-secondary" href="https://dp.dataocean.us/auth/sign-in/#?" target="_blank">
+                        <span lang="uk">Увійти</span>
+                        <span lang="en">Log in</span>
+                    </a>
+                    <a class="navigation__item btn-primary" href="https://dp.dataocean.us/auth/sign-up/" target="_blank">
+                        <span lang="uk">Зареєструватись</span>
+                        <span lang="en">Sign up</span>
                     </a>
                     <button id="change-lang" class="navigation__item link link_start select_lang">
-                        <img lang="en" src="static/img/ukraine_flag.svg">
+                        <img lang="en" src="img/ukraine_flag.svg">
                         <span class="select_lang_span" lang="en">Українська</span>
-                        <img lang="uk" src="static/img/usa_flag.svg">
+                        <img lang="uk" src="img/usa_flag.svg">
                         <span class="select_lang_span" lang="uk">English</span>
                     </button>
-                </ul> 
+                </ul>
             </nav>
         </header>
 
@@ -47,7 +55,7 @@
                             <h1 id="explore" class="h1_top">Explore.</h1>
                             <h1 id="build" class="h1_build">Build.</h1>
                             <h1 id="develop" class="h1_develop">Develop.</h1>
-                            <a id="link_platform" class="btn-primary btn--has-shadow btn-primary_dataocean">
+                            <a class="btn-primary btn--has-shadow btn-primary_dataocean js-link-platform">
                                 <span>
                                     Data Platform
                                     <ion-icon class="btn-primary_dataocean_icon" name="chevron-forward-outline"></ion-icon>
@@ -55,9 +63,9 @@
                             </a>
                         </div>
                     </div>
-                
+
                     <div class="col-lg-6 margin-list">
-                        <div class="hero-block__right"> 
+                        <div class="hero-block__right">
                             <h2 class="h2 h2_light hero-block__right hero-block__right__hello">
                                 <span lang="uk">Привіт! <br> Ми &mdash; Data Ocean.</br></span>
                                 <span lang="en">Hello! <br> We are Data Ocean.</br></span>
@@ -66,12 +74,12 @@
                                 <span lang="uk">
                                     Наша мета проста та амбітна — надати зручний доступ до державних даних.
                                     <br>Відкриті дані — основа для прийняття бізнес та державних рішень.
-                                    <br>З Data Ocean доступ до відкритих даних стає простим. 
+                                    <br>З Data Ocean доступ до відкритих даних стає простим.
                                     Кожен може отримати дані з потрібних реєстрів, сконструювати у зручний спосіб, проаналізувати та отримати користь. Спробуйте!
                                 </span>
                                 <span lang="en">
                                     Our goal is simple and ambitious - to provide citizens with a convenient access to the government database.
-                                    <br>Open Data is fundamental for business and governmental decision. 
+                                    <br>Open Data is fundamental for business and governmental decision.
                                     <br>With Data Ocean an access to open data becomes easy.
                                     Everyone can get the data from the needed registers, design in a convenient way, analyze and benefit. Try it!
                                 </span>
@@ -81,23 +89,23 @@
                 </div>
             </div>
         </section>
-    
+
         <section class="section section_background">
             <div class="container">
                 <div class="row row_vertical-spaces">
                     <div class="col-lg-6 landing-image__image">
-                        <img src="static/img/intro.png">
+                        <img src="img/intro.png">
                     </div>
                     <div class="col-lg-6 margin-list">
-                        <img class="margin-list__item" src="static/img/image 8.svg">
+                        <img class="margin-list__item" src="img/image%208.svg">
                         <h2 class="h2 margin-list__item">
                             <span lang="uk">Майбутнє за відкритими даними</span>
                             <span lang="en">Open data is the thing of the future</span>
                         </h2>
                         <div class="margin-list__item paragraph">
-                            <span lang="uk">Data Ocean — провайдер зручного доступу до відкритих даних. 
+                            <span lang="uk">Data Ocean — провайдер зручного доступу до відкритих даних.
                             <br>Ми розробляємо спеціальний сервіс, де Ви зможете отримати доступ до всіх важливих та існуючих реєстрів, даних та звітностей.</span>
-                            <span lang="en">Data Ocean is a provider with a convenient access to open data. 
+                            <span lang="en">Data Ocean is a provider with a convenient access to open data.
                             <br>We are developing a special service where you can access all important and existing registers, data and reports.</span>
                         </div>
                     </div>
@@ -110,24 +118,24 @@
         <div class="container">
             <div class="row row_vertical-spaces">
                 <div class="col-lg-6 margin-list paragraph_large">
-                    <img class="margin-list__item" src="static/img/Group_134.svg">
+                    <img class="margin-list__item" src="img/Group_134.svg">
                     <h2 class="h2 margin-list__item">
-                        <a id="link_DO" target="_blank" class="link_i">
+                        <a class="link_i js-link-platform" target="_blank">
                             Data Platform
                             <ion-icon class="h2 margin-list__item" name="chevron-forward-outline"></ion-icon>
-                        </a>                           
+                        </a>
                     </h2>
                     <div class="margin-list__item paragraph">
                         <span lang="uk">Data Platform — не про сухі дані.
                         Це візуалізований конструктор даних для доступу до статистичної інформації, необхідної бізнесу для прийняття рішень.
                         Також, платформа є сервісом зручного доступу до даних за допомогою Rest API для розробників програмного забезпечення.</span>
-                        <span lang="en">Data Platform is not about plain data. 
-                        It is a visualized data constructor for accessing the statistical information, needed by business to make decisions. 
+                        <span lang="en">Data Platform is not about plain data.
+                        It is a visualized data constructor for accessing the statistical information, needed by business to make decisions.
                         The platform is also a service for an easy access to the data, using the Rest API for software developers.</span>
                     </div>
                 </div>
                 <div class="col-lg-6 landing-image">
-                    <img  class="landing-image__image" src="static/img/Group_132.svg">
+                    <img  class="landing-image__image" src="img/Group_132.svg">
                 </div>
             </div>
         </div>
@@ -136,17 +144,17 @@
     <section class="section">
         <div class="container">
             <div class="row row_vertical-spaces">
-                <div class="col-lg-6 landing-image landing-image-dashboard">    
-                    <img lang="uk" class="landing-image-dashboard landing-image-dashboard-1" src="static/img/dashboard_2.svg"> 
-                    <img class="landing-image-dashboard landing-image-dashboard-2" src="static/img/dashboard_1.svg">
-                    <img lang="en" class="landing-image-dashboard landing-image-dashboard-1" src="static/img/dashboard_2en.svg"> 
+                <div class="col-lg-6 landing-image landing-image-dashboard">
+                    <img lang="uk" class="landing-image-dashboard landing-image-dashboard-1" src="img/dashboard_2.svg">
+                    <img class="landing-image-dashboard landing-image-dashboard-2" src="img/dashboard_1.svg">
+                    <img lang="en" class="landing-image-dashboard landing-image-dashboard-1" src="img/dashboard_2en.svg">
                 </div>
 
                 <div class="col-lg-6 margin-list">
-                    <img class="margin-list__item" src="static/img/Group_134.svg">
+                    <img class="margin-list__item" src="img/Group_134.svg">
                     <h2 class="h2 margin-list__item">
                         <span lang="uk">Зрозумілий інтерфейс</span>
-                        <span lang="en">Clear interface</span>    
+                        <span lang="en">Clear interface</span>
                     </h2>
                     <div class="margin-list__item paragraph">
                         <span lang="uk">Зручний  інтерфейс навіть для тих, хто ніколи не користувався такими системами.</span>
@@ -161,7 +169,7 @@
         <div class="container">
             <div class="row row_vertical-spaces">
                 <div class="col-lg-6 margin-list paragraph_large">
-                    <img class="margin-list__item" src="static/img/Group_134.svg">
+                    <img class="margin-list__item" src="img/Group_134.svg">
                     <h2 class="h2 margin-list__item">
                         <span lang="uk">Гнучкі налаштування</span>
                         <span lang="en">Flexible settings</span>
@@ -172,11 +180,11 @@
                     </div>
                 </div>
                 <div class="col-lg-6 landing-image landing-image-grafic">
-                    <img lang="uk" class="landing-image-grafic landing-image-grafic-1" src="static/img/grafic_1.svg">
-                    <img lang="uk" class="landing-image-grafic landing-image-grafic-2" src="static/img/grafic_2.svg">
-                    <img lang="en" class="landing-image-grafic landing-image-grafic-1" src="static/img/grafic_1en.svg">
-                    <img lang="en" class="landing-image-grafic landing-image-grafic-2" src="static/img/grafic_2en.png">
-                </div>     
+                    <img lang="uk" class="landing-image-grafic landing-image-grafic-1" src="img/grafic_1.svg">
+                    <img lang="uk" class="landing-image-grafic landing-image-grafic-2" src="img/grafic_2.svg">
+                    <img lang="en" class="landing-image-grafic landing-image-grafic-1" src="img/grafic_1en.svg">
+                    <img lang="en" class="landing-image-grafic landing-image-grafic-2" src="img/grafic_2en.png">
+                </div>
             </div>
         </div>
     </section>
@@ -184,16 +192,16 @@
         <section class="section section_flying-pixels">
         <div class="container">
             <div class="row row_vertical-spaces">
-                <div class="col-lg-6 landing-image landing-image-api">    
-                    <img lang="uk" class="landing-image-api" src="static/img/APIua.svg"> 
-                    <img lang="en" class="landing-image-api" src="static/img/APIen.svg"> 
+                <div class="col-lg-6 landing-image landing-image-api">
+                    <img lang="uk" class="landing-image-api" src="img/APIua.svg">
+                    <img lang="en" class="landing-image-api" src="img/APIen.svg">
                 </div>
 
                 <div class="col-lg-6 margin-list">
-                    <img class="margin-list__item" src="static/img/Group_134.svg">
+                    <img class="margin-list__item" src="img/Group_134.svg">
                     <h2 class="h2 margin-list__item">
                         <span lang="uk">Доступ за допомогою Rest API</span>
-                        <span lang="en">An access to the data, using the Rest API</span>    
+                        <span lang="en">An access to the data, using the Rest API</span>
                     </h2>
                     <div class="margin-list__item paragraph">
                         <span lang="uk">Зручний доступ до даних за допомогою Rest API для розробників програмного забезпечення.</span>
@@ -215,9 +223,48 @@
         </div>
     </section>
 
-    <section id="about" class="section section_background section_flying-pixels">
+
+    <section class="section section_background">
         <div class="container">
-            <div class="row row_vertical-spaces">    
+            <div class="payments_variants">
+                <h2 class="h2">
+                    <span lang="uk">Тарифні плани</span>
+                    <span lang="en">Subscriptions</span>
+                </h2>
+            </div>
+
+            <div class="payments">
+                <div class="payments_box" id="pay-box"></div>
+                <div class="payments_tariff">
+                    <img src="img/enterprize_label.svg" alt='tarif_logo'>
+                    <h3 class="h3">Custom</h3>
+                    <div class="pay_descript">
+                        <br>
+                        <span lang="uk">Кількість запитів та кількість переглядів - за домовленістю</span>
+                        <span lang="en">Requests and views - TBD</span>
+                    </div>
+                    <div class="price">
+                        <h2 lang="uk">Ціна договірна</h2>
+                        <h2 lang="en">Contact support <br>for a price</h2>
+                    </div>
+                    <button
+                        id="button-form"
+                        onclick="window.open('mailto:info@dataocean.us')"
+                        class="btn-primary"
+                    >
+                        <span lang="uk">Обрати</span>
+                        <span lang="en">Choose</span>
+                    </button>
+                </div>
+            </div>
+            <span class="without-vat" lang="uk">*місяць = 30 днів</span>
+            <span class="without-vat" lang="en">*month = 30 days</span>
+        </div>
+    </section>
+
+    <section id="about2" class="section section_background section_flying-pixels">
+        <div class="container">
+            <div class="row row_vertical-spaces">
                 <div class="col-lg-6 paragraph_large">
                     <h2 class="h2">
                     <span lang="uk">Про нас</span>
@@ -232,7 +279,7 @@
                     <span lang="en"><b>Our goal</b> is to open a world of open data that will help you, when the IT environment becomes a daily need.</span>
                 </div>
                 <div class="col-lg-6 landing-teams-container">
-                    <img class="landing-teams-container__img" src="static/img/team_i.png">
+                    <img class="landing-teams-container__img" src="img/team_ph.jpg">
                 </div>
             </div>
         </div>
@@ -248,52 +295,52 @@
             </div>
             <div class="landing-grid">
                 <div class="user-card">
-                    <img src="static/img/team/Lyuba-Shipovich.png" class="user-card__image">
+                    <img src="img/team/Lyuba-Shipovich.png" class="user-card__image">
                     <div class="user-card__name h6">
                         <span lang="uk">Люба Шипович</span>
                         <span lang="en">Lyuba Shipovich</span>
                     </div>
                     <div class="user-card__title">Project Leader in Data Ocean</div>
                 </div>
-    
+
                 <div class="user-card">
-                    <img src="static/img/team/Ugin-Poremchuk.png" class="user-card__image">
+                    <img src="img/team/Ugin-Poremchuk.png" class="user-card__image">
                     <div class="user-card__name h6">
                         <span lang="uk">Євген Поремчук</span>
                         <span lang="en">Ugin Poremchuk</span>
                     </div>
                     <div class="user-card__title">СТО</div>
                 </div>
-    
+
                 <div class="user-card">
-                    <img src="static/img/team/Yehor-Sobolev.png" class="user-card__image">
+                    <img src="img/team/Yehor-Sobolev.png" class="user-card__image">
                     <div class="user-card__name h6">
                         <span lang="uk">Єгор Соболєв</span>
                         <span lang="en">Yehor Sobolev</span>
                     </div>
                     <div class="user-card__title">Python developer</div>
                 </div>
-    
+
                 <div class="user-card">
-                    <img src="static/img/team/Maksym-Nazaruk.png" class="user-card__image">
+                    <img src="img/team/Maksym-Nazaruk.png" class="user-card__image">
                     <div class="user-card__name h6">
                         <span lang="uk">Максим Назарук</span>
                         <span lang="en">Maksym Nazaruk</span>
                     </div>
                     <div class="user-card__title">Scrum master</div>
                 </div>
-    
+
                 <div class="user-card">
-                    <img src="static/img/team/Yaroslav-Lepiavko.png" class="user-card__image">
+                    <img src="img/team/Yaroslav-Lepiavko.png" class="user-card__image">
                     <div class="user-card__name h6">
                         <span lang="uk">Ярослав Лепявко</span>
                         <span lang="en">Yaroslav Lepiavko</span>
                     </div>
                     <div class="user-card__title">Marketing manager</div>
                 </div>
-    
+
                 <div class="user-card">
-                    <img src="static/img/team/Roman-Tiukh.png" class="user-card__image">
+                    <img src="img/team/Roman-Tiukh.png" class="user-card__image">
                     <div class="user-card__name h6">
                         <span lang="uk">Роман Тюх</span>
                         <span lang="en">Roman Tiukh</span>
@@ -302,7 +349,7 @@
                 </div>
 
                 <div class="user-card">
-                    <img src="static/img/team/Vitaliy-Bilous.png" class="user-card__image">
+                    <img src="img/team/Vitaliy-Bilous.png" class="user-card__image">
                     <div class="user-card__name h6">
                         <span lang="uk">Віталій Білоус</span>
                         <span lang="en">Vitaliy Bilous</span>
@@ -311,7 +358,7 @@
                 </div>
 
                 <div class="user-card">
-                    <img src="static/img/team/Anastasiia-Lashchuk.png" class="user-card__image">
+                    <img src="img/team/Anastasiia-Lashchuk.png" class="user-card__image">
                     <div class="user-card__name h6">
                         <span lang="uk">Анастасія Лащук</span>
                         <span lang="en">Anastasiia Lashchuk</span>
@@ -320,25 +367,25 @@
                 </div>
 
                 <div class="user-card">
-                    <img src="static/img/team/Oleksii-Serediuk.png" class="user-card__image">
+                    <img src="img/team/Oleksii-Serediuk.png" class="user-card__image">
                     <div class="user-card__name h6">
                         <span lang="uk">Олексій Середюк</span>
                         <span lang="en">Oleksiy Serediuk</span>
                     </div>
                     <div class="user-card__title">Product designer</div>
                 </div>
-    
+
                 <div class="user-card">
-                    <img src="static/img/team/Ivan-Kharina.png" class="user-card__image">
+                    <img src="img/team/Ivan-Kharina.png" class="user-card__image">
                     <div class="user-card__name h6">
                         <span lang="uk">Іван Харина</span>
                         <span lang="en">Ivan Kharina</span>
                     </div>
                     <div class="user-card__title">Backend developer</div>
                 </div>
-    
+
                 <div class="user-card">
-                    <img src="static/img/team/Oleksandr-Topusov.png" class="user-card__image">
+                    <img src="img/team/Oleksandr-Topusov.png" class="user-card__image">
                     <div class="user-card__name h6">
                         <span lang="uk">Олександр Топузов</span>
                         <span lang="en">Oleksandr Topusov</span>
@@ -347,16 +394,16 @@
                 </div>
 
                 <div class="user-card">
-                    <img src="static/img/team/Olena-Yanishevska.png" class="user-card__image">
+                    <img src="img/team/Olena-Yanishevska.png" class="user-card__image">
                     <div class="user-card__name h6">
                         <span lang="uk">Олена Янішевська</span>
                         <span lang="en">Olena Yanishevska</span>
                     </div>
                     <div class="user-card__title">Junior frontend developer</div>
                 </div>
-    
+
                 <div class="user-card">
-                    <img src="static/img/team/Oleksa-Bezobchuk.png" class="user-card__image">
+                    <img src="img/team/Oleksa-Bezobchuk.png" class="user-card__image">
                     <div class="user-card__name h6">
                         <span lang="uk">Олександр Безобчук</span>
                         <span lang="en">Oleksa Bezobchuk</span>
@@ -431,13 +478,13 @@
                         </div>
                     </form>
                 </div>
-    
+
                 <div class="landing-feedback__right">
                     <span class="landing-feedback__right-text">
                         <span lang="uk">Або напишіть нам на електронну адресу</span>
                         <span lang="en">Or email us</span>
                     </span>
-    
+
                     <a href="mailto:info@dataocean.us" class="link link_color-white">
                         <ion-icon class="link__icon" name="mail"></ion-icon>info@dataocean.us
                     </a>
@@ -449,35 +496,61 @@
     <footer class="footer-wrapper">
         <div class="container">
             <div class="footer">
-                <img class="footer__item" src="static/img/logo-white.svg" class="header-logo">
-    
-                <ul class="footer__item navigation navigation_align-left navigation_white">
-                    <a class="navigation__item link link_end" href="#product">
+                <div class="footer__item footer-logo">
+                    <img class="footer-logo js-link-platform" src="img/logo-white.svg">
+                    <img class="footer-logo footer-logo_cpk link-cpk" src="img/cpk.svg">
+                </div>
+                <ul class="footer__item navigation_align-left navigation_white">
+                    <li>
+                        <a class="navigation__item link link_end" href="#product">
                         <span lang="uk">Про Data Platform</span>
                         <span lang="en">About Data Platform</span>
-                    </a>
-                    <a class="navigation__item link link_end" href="#about">
+                        </a>
+                    </li>
+                    <li>
+                        <a class="navigation__item link link_end" href="#about">
                         <span lang="uk">Про нас</span>
                         <span lang="en">About us</span>
-                    </a>
+                        </a>
+                    </li>
                 </ul>
+                <ul class="footer__item navigation_align-left navigation_white">
+                    <li>
+                        <a id="terms_and_conditions" class="navigation__item link link_end">
+                        <span lang="uk">Правила та умови</span>
+                        <span lang="en">Terms and conditions</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a id="privacy_policy" class="navigation__item link link_end">
+                        <span lang="uk">Політика конфіденційності</span>
+                        <span lang="en"> Privacy policy</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="footer__item">
+                        <a href="https://www.facebook.com/DataOceanGroup/" target="_blank">
+                        <img class="footer__item" src="img/facebook.svg">
+                        </a>
+                        <a href="https://www.linkedin.com/company/data-ocean/" target="_blank">
+                        <img class="footer__item" src="img/linkedin.svg">
+                        </a>
+                        <a href="mailto:info@dataocean.us" target="_blank">
+                        <img class="footer__item" src="img/email.svg">
+                        </a>
+                </div>
             </div>
             <div class="footer-copyright">
                 <div class="footer-copyright__slogan">
                     <span lang="uk">Data Ocean — провайдер зручного <br>доступу до відкритих даних.</span>
-                    <span lang="en">Data Ocean is a provider <br>with a convenient access to open data.</span></a>    
+                    <span lang="en">Data Ocean is a provider <br>with a convenient access to open data.</span></a>
                 </div>
                 <div class="footer-copyright__copyright">
-                    <span lang="uk">©2020 – Data Ocean. Всі права захищені.</span>
-                    <span lang="en">©2020 – Data Ocean. All rights reserved.</span>
+                    <span lang="uk">©2020-2021 – Data Ocean. Всі права захищені.</span>
+                    <span lang="en">©2020-2021 – Data Ocean. All rights reserved.</span>
                 </div>
             </div>
         </div>
     </footer>
-
-    <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r118/three.min.js"></script>
-    <script src="static/dist/vendors~main.js"></script>
-    <script src="static/dist/main.js"></script>
 </body>
 </html>

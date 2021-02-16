@@ -1,9 +1,9 @@
 // import * as THREE from 'three';
-import DOTS from 'vanta/dist/vanta.dots.min';
+// import DOTS from 'vanta/dist/vanta.dots.min';
+import './scss/main.scss';
 import $ from 'jquery';
 import 'jquery-validation';
 // import 'jquery-modal';
-
 
 $(document).ready(() => {
     setInterval(() => {
@@ -13,14 +13,14 @@ $(document).ready(() => {
                 $('#explore').removeClass('transparency')
             }, 1500)
         }, 1000);
-        
+
         setTimeout(() => {
             $('#build').addClass('transparency')
             setTimeout(() => {
                 $('#build').removeClass('transparency')
             }, 1500)
         }, 2500);
-    
+
         setTimeout(() => {
             $('#develop').addClass('transparency')
             setTimeout(() => {
@@ -70,7 +70,7 @@ let langs = {
         uk: 'Замала кількість символів',
         en: 'Too few symbols',
     },
-    maxSymbols: { 
+    maxSymbols: {
         uk: 'Завелика кількість символів',
         en: 'Too many symbols',
     },
@@ -177,13 +177,13 @@ $('#contact-form').submit(function(event){
 
     let phoneNumber = '';
     if (this.phone.value) {
-        phoneNumber = ' Мій контактний номер: '  + this.phone.value; 
+        phoneNumber = ' Мій контактний номер: '  + this.phone.value;
     }
-    
+
     let data = {
         name: this.username.value + ' ' + this.surname.value,
         email: this.email.value,
-        subject: this.username.value + ' ' + this.surname.value, 
+        subject: this.username.value + ' ' + this.surname.value,
         message: this.question.value + phoneNumber,
     }
 
@@ -212,9 +212,9 @@ $('#contact-form').submit(function(event){
 
 const allowedLanguages = ['uk', 'en'];
 
-function changeLang (languageCode) {  
+function changeLang (languageCode) {
     if (allowedLanguages.includes(languageCode)) {
-        window.localStorage.setItem('lang', languageCode); 
+        window.localStorage.setItem('lang', languageCode);
         $('#name')[0].placeholder = t('placeholderName');
         $('#surname')[0].placeholder = t('placeholderLastName');
         $('#question')[0].placeholder = t('placeholderQuestion');
@@ -227,6 +227,7 @@ function changeLang (languageCode) {
             }
         });
     } else {
+        changeLang('uk');
         throw new Error("LangCode " + languageCode + " not supported");
     }
 }
@@ -235,37 +236,129 @@ $('#change-lang').click(function(event) {
     event.preventDefault();
     let langUser = 'uk';
     if (localStorage.getItem('lang') === 'uk') {
-        langUser = 'en'; 
+        langUser = 'en';
     }
     changeLang(langUser);
 });
 
 $(document).ready(() => {
     const langFromLocalStorage = localStorage.getItem('lang');
-    if (allowedLanguages.includes(langFromLocalStorage)) {
+    const langFromUrl = new URLSearchParams(location.search).get('lang');
+
+    if (allowedLanguages.includes(langFromUrl)) {
+        changeLang(langFromUrl);
+    } else if (allowedLanguages.includes(langFromLocalStorage)) {
         changeLang(langFromLocalStorage);
     } else {
         changeLang('uk');
     }
 });
 
-$('#link_platform').on('click', function () {
-    window.open(process.env.DO_FRONTEND_HOST + '/system/home/?lang=' + localStorage.getItem('lang')); 
+$('.js-link-platform').on('click', function () {
+    window.open(process.env.DO_FRONTEND_HOST + '/system/home/?lang=' + localStorage.getItem('lang'));
 });
 
-$('#link_DO').on('click', function () {
-    window.open(process.env.DO_FRONTEND_HOST + '/system/home/?lang=' + localStorage.getItem('lang')); 
+$('.link-cpk').on('click', function () {
+    window.open('https://pep.org.ua/'+ localStorage.getItem('lang'));
 });
 
 $('#api-docs').on('click', function () {
-    window.open(process.env.DO_BACKEND_HOST + '/schema/redoc/'); 
+    window.open(process.env.DO_BACKEND_HOST + '/schema/redoc/');
 });
 
 $('#api-button').on('click', function () {
-    window.open(process.env.DO_FRONTEND_HOST + '/system/home/?lang=' + localStorage.getItem('lang')); 
+    window.open(process.env.DO_FRONTEND_HOST + '/system/home/?lang=' + localStorage.getItem('lang'));
 });
 
 $('#menu-btn').on('click', function (event) {
     event.preventDefault();
     $('#navigation').fadeToggle();
 });
+
+$.ajax({
+    url: process.env.DO_BACKEND_HOST + '/api/payment/subscriptions/',
+    type : 'get',
+    dataType: "json",
+    // error: function() {
+    //     alert('ERROR.');
+    // },
+    success : function(data) {
+        let elements = [];
+        const imgPay = [
+            'img/freemium_label.svg',
+            'img/basic_label.svg',
+        ];
+        data.forEach (function(subscription, i) {
+            const requestsLimitEn = subscription.requests_limit.toLocaleString("en");
+            const subscriptionPriceEn = subscription.price.toLocaleString("en");
+            
+            let html = `
+            <div class="payments_tariff">
+
+            <img src="${imgPay[i]}" alt='tarif_logo'></img>
+
+            <h3 class="h3">${subscription.name}</h3>
+
+            <div class="pay_descript">
+                <span lang="uk">
+                    <br>    
+                    ${subscription.requests_limit}
+                    API-запитів
+                    <br> 
+                    ${ !subscription.is_default ? ('Необмежено переглядів') : subscription.platform_requests_limit + ' Переглядів'}
+                </span>
+                <span lang="en">
+                    <br>
+                    ${requestsLimitEn}
+                    API-requests
+                    <br>
+                    ${ !subscription.is_default ? ('Unlimited views') : subscription.platform_requests_limit + ' Views'}
+                </span>
+            </div>
+            <div class="price">
+                <div lang="uk">
+                    ${subscription.price}
+                    <span lang="uk">грн/міс</span>
+                </div>
+                <div lang="en">
+                    ${subscriptionPriceEn}
+                    <span lang="en">UAH/month</span>
+                </div>
+            </div>
+
+                <button type="button" class="btn-primary btn-for-pay js-subscription-select" data-id="${subscription.id}">
+                    <span lang="uk">Обрати</span>
+                    <span lang="en">Choose</span>
+                </button>
+            </div>
+            `
+            elements.push(html);
+        });
+
+        $('#pay-box').html(elements)
+
+        changeLang(window.localStorage.getItem('lang') || 'uk')
+
+        $('.js-subscription-select').on('click', function () {
+            const subId = $(this).data('id')
+            window.open(process.env.DO_FRONTEND_HOST + '/system/subscriptions/?lang=' + localStorage.getItem('lang') + `&subscription=${subId}`);
+        });
+    }
+  });
+
+$('#terms_and_conditions').on('click', function () {
+    if (localStorage.getItem('lang') === 'uk') {
+        window.open(process.env.DO_FRONTEND_HOST + '/docs/TermsAndConditionsUk.html');
+    } else {
+        window.open(process.env.DO_FRONTEND_HOST + '/docs/TermsAndConditionsEn.html');
+    }
+});
+
+$('#privacy_policy').on('click', function () {
+    if (localStorage.getItem('lang') === 'uk') {
+        window.open(process.env.DO_FRONTEND_HOST + '/docs/PrivacyPolicyUk.html');
+    } else {
+        window.open(process.env.DO_FRONTEND_HOST + '/docs/PrivacyPolicyEn.html');
+    }
+});
+
