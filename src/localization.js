@@ -70,6 +70,10 @@ let langs = {
     nomark: {
         uk: 'Примітка відстуня',
         en: 'No mark'
+    },
+    password: {
+        uk: 'Пароль',
+        en: 'Password'
     }
 };
 

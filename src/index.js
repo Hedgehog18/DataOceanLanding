@@ -5,7 +5,7 @@ import $ from 'jquery';
 import 'jquery-validation';
 import {t, changeLang, onChangeLang} from './localization'
 import SubscriptionsTable from './subscriptions-table'
-// import 'jquery-modal';
+import 'jquery.cookie';
 
 onChangeLang(() => {
     $('#name')[0].placeholder = t('placeholderName');
@@ -14,6 +14,7 @@ onChangeLang(() => {
     $('#username_pay')[0].placeholder = t('placeholderName');
     $('#surname_pay')[0].placeholder = t('placeholderLastName');
     $('#question_pay')[0].placeholder = t('placeholderPayNote');
+    $('#password_login')[0].placeholder = t('password');
 })
 
 $(document).ready(() => {
@@ -217,7 +218,7 @@ const getPaySchema = () => {
     }
 };
 
-$('#pay-form').submit(function(event){
+$('#pay-form').on('submit', function(event){
     event.preventDefault();
     let payForm = $(this);
     payForm.validate(getPaySchema())
@@ -276,3 +277,131 @@ $('#privacy_policy').on('click', function () {
 });
 
 new SubscriptionsTable('#subs-table').init()
+
+$('#login').on('click', function () {
+    $('.login-modal').toggle();
+    $(document).on('click', function (e) {
+        if ($(e.target).is('.login-modal')) {
+            $('.login-modal').hide();
+        }
+    });
+});
+
+const getLoginSchema = () => {
+    return {
+        errorClass: "input_error",
+        rules: {
+            email: {
+                required: true,
+                email: true,
+            },
+            password: {
+                minlength: 6,
+                required: true,
+            },
+        },
+        messages: {
+            email: {
+                required: t('emailRequired'),
+                email: t('emailCorrect'),
+            },
+            password: {
+                minlength: t('questionAsk'),
+                required: t('questionAsk'),
+            }
+        }
+    }
+};
+
+$('#loginform').on('submit', function(event){
+    event.preventDefault();
+    let loginForm = $(this);
+    loginForm.validate(getLoginSchema());
+    if (!loginForm.valid()) {
+        return
+    }
+    $('#error_login').html('');
+
+    $.ajax({
+        url: process.env.DO_BACKEND_HOST + '/api/rest-auth/login/',
+        type: 'POST',
+        data: {
+            email: this.email_login.value,
+            password: this.password_login.value,
+        },
+        headers: {
+            ['Accept-Language']: localStorage.getItem('lang'),
+        },
+        success: function(data, status, xhr) {
+            if (xhr.status !== 200) {
+                return
+            }
+            $.cookie('token', data.key, { maxAge: 604800 });
+            $.cookie('firstname', data.user.first_name, { maxAge: 604800 });
+            $.cookie('lastname', data.user.last_name, { maxAge: 604800 });
+            $.cookie('email', data.user.email, { maxAge: 604800 });
+            document.location = process.env.DO_FRONTEND_HOST + '/system/home/?lang=' + localStorage.getItem('lang');
+        },
+        error: function (jqXHR, textStatus, errorMessage) {
+            var errMessage = JSON.parse(jqXHR.responseText)[Object.keys(JSON.parse(jqXHR.responseText))[0]][0];
+            $('#error_login').html(errMessage);
+        }
+    })
+})
+
+$('#forgot_password').on('click', function () {
+    document.location = process.env.DO_FRONTEND_HOST + '/auth/restore-pass/?lang=' + localStorage.getItem('lang');
+});
+
+// $('#signup').on('click', function () {
+//     $('.signup-modal').toggle();
+//     $(document).on('click', function (e) {
+//         if ($(e.target).is('.signup-modal')) {
+//             $('.signup-modal').hide();
+//         }
+//     });
+// });
+
+$(document).ready(() => {
+    if (!($.cookie('firstname')) && !($.cookie('lastname')) ) {
+        return
+    } else {
+        $('#login').replaceWith(/*html*/`
+        <span class="user_profile">
+            <ion-icon class="profile_icon" name="person-circle-outline"></ion-icon>
+            <a class="link link_start">
+                ${$.cookie('firstname')} ${$.cookie('lastname')}
+            </a>
+            <ion-icon class="arrow_icon" name="chevron-down-outline"></ion-icon>
+        </span>
+        <ul class="submenu">
+            <li id="user-profile" class="submenu_item">
+                <a class="link link_start">
+                    <span lang="uk">Мій кабінет</span>
+                    <span lang="en">My profile</span>
+                </a>
+            </li>
+            <li id="logout" class="submenu_item">
+                <a class="link link_start ">
+                    <span lang="uk">Вийти</span>
+                    <span lang="en">Log out</span>
+                </a>
+            </li>
+        </ul>
+        `)
+        $('#signup').hide();
+    }
+    
+    $('#user-profile').on('click', function () {
+        document.location = process.env.DO_FRONTEND_HOST + '/system/profile/projects/?lang=' + localStorage.getItem('lang');
+    });
+
+    $('#logout').on('click', function() {
+        $.removeCookie('token');
+        $.removeCookie('firstname');
+        $.removeCookie('lastname');
+        $.removeCookie('email');
+        document.location.reload();
+    })
+});
+

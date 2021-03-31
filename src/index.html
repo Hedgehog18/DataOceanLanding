@@ -21,28 +21,38 @@
                     <ion-icon name="menu-outline"></ion-icon>
                 </a>
                 <ul id="navigation" class="navigation header__item">
-                    <a class="navigation__item link link_start" href="#product">
-                        <span lang="uk">Про Data Platform</span>
-                        <span lang="en">About Data Platform</span>
-                    </a>
-                    <a class="navigation__item link link_start" href="#about">
-                        <span lang="uk">Про нас</span>
-                        <span lang="en">About us</span>
-                    </a>
-                    <a class="navigation__item btn-secondary" href="https://dp.dataocean.us/auth/sign-in/#?" target="_blank">
-                        <span lang="uk">Увійти</span>
-                        <span lang="en">Log in</span>
-                    </a>
-                    <a class="navigation__item btn-primary" href="https://dp.dataocean.us/auth/sign-up/" target="_blank">
-                        <span lang="uk">Зареєструватись</span>
-                        <span lang="en">Sign up</span>
-                    </a>
-                    <button id="change-lang" class="navigation__item link link_start select_lang">
-                        <img lang="en" src="img/ukraine_flag.svg">
-                        <span class="select_lang_span" lang="en">Українська</span>
-                        <img lang="uk" src="img/usa_flag.svg">
-                        <span class="select_lang_span" lang="uk">English</span>
-                    </button>
+                    <li class="navigation__item">
+                        <a class="link link_start" href="#product">
+                            <span lang="uk">Про Data Platform</span>
+                            <span lang="en">About Data Platform</span>
+                        </a>
+                    </li>
+                    <li class="navigation__item">
+                        <a class="link link_start" href="#about">
+                            <span lang="uk">Про нас</span>
+                            <span lang="en">About us</span>
+                        </a>
+                    </li>
+                    <li class="navigation__item">
+                        <button id="login" class="btn-secondary">
+                            <span lang="uk">Увійти</span>
+                            <span lang="en">Log in</span>
+                        </button>
+                    </li>
+                    <li class="navigation__item">
+                        <a id="signup" class="link btn-primary" href="https://dp.dataocean.us/auth/sign-up/">
+                            <span lang="uk">Зареєструватись</span>
+                            <span lang="en">Sign up</span>
+                        </a>
+                    </li>
+                    <li class="navigation__item">
+                        <button id="change-lang" class="link link_start select_lang">
+                            <img lang="en" src="img/ukraine_flag.svg">
+                            <span class="select_lang_span" lang="en">Українська</span>
+                            <img lang="uk" src="img/usa_flag.svg">
+                            <span class="select_lang_span" lang="uk">English</span>
+                        </button>
+                    </li>
                 </ul>
             </nav>
         </header>
@@ -593,6 +603,37 @@
                 </button>
             </div>
         </form>
-    </div> 
+    </div>
+
+    <div class="login-modal">
+        <form class="login-group" id="loginform">
+            <input type="email" name="email_login" id="email_login" class="input" required placeholder="Email">
+            <input type="password" name="password_login" id="password_login" class="input" minlength="6" required placeholder="password">
+            <span id="error_login"></span>
+            <button id="login-submit" class="btn-primary btn-primary_submit" type="submit">
+                <span lang="uk">Увійти</span>
+                <span lang="en">Submit</span>
+            </button>
+            <a id="forgot_password">
+                <span lang="uk">Забули пароль?</span>
+                <span lang="en">Forgot password?</span>
+            </a>
+        </form>
+    </div>
+
+    <!-- <div class="signup-modal">
+        <form class="login-group" id="signupform">
+            <input type="text" name="name_signup" id="name_signup" required class="input" minlength="2" placeholder="Ім'я">
+            <input type="text" name="surname_signup" id="surname_signup" required class="input" minlength="2" placeholder="Прізвище">
+            <input type="email" name="email_signup" id="email_signup" class="input" required placeholder="Email">
+            <input type="password" name="password_signup1" id="password_signup1" class="input" minlength="6" placeholder="Пароль">
+            <input type="password" name="password_signup2" id="password_signup2" class="input" minlength="6" placeholder="Підтвердження паролю">
+            <checkbox>Згода</checkbox>
+            <button id="signup-submit" class="btn-primary btn-primary_submit" type="submit">
+                <span lang="uk">Зареєструватись</span>
+                <span lang="en">Submit</span>
+            </button>
+        </form>
+    </div> -->
 </body>
 </html>
