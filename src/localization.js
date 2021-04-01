@@ -82,7 +82,7 @@ export const t = (key) => {
     return langs[key][currentLang];
 };
 
-$(document).ready(() => {
+$(() => {
     const langFromLocalStorage = localStorage.getItem('lang');
     const langFromUrl = new URLSearchParams(location.search).get('lang');
 
