@@ -11,53 +11,44 @@
 </head>
 <body>
     <div class="landing-dots">
-        <header id="header" class="container header">
-            <div class="header-logo header__item">
+        <header class="container">
+            <figure class="header-logo">
                 <img src="img/logo.svg" class="header-logo_DO js-link-platform">
                 <img src="img/logo_pep.svg" class="header-logo_PEP link-cpk">
-            </div>
-            <nav>
-                <a href="#" id="menu-btn" class="menu-btn">
+            </figure>
+            <nav class="menu">
+                <input type="checkbox" id="menuToggle">
+                <label for="menuToggle" class="menu-icon">
                     <ion-icon name="menu-outline"></ion-icon>
-                </a>
-                <ul id="navigation" class="navigation header__item">
-                    <li class="navigation__item">
-                        <a class="link link_start" href="#product">
-                            <span lang="uk">Про Data Platform</span>
-                            <span lang="en">About Data Platform</span>
-                        </a>
-                    </li>
-                    <li class="navigation__item">
-                        <a class="link link_start" href="#about">
-                            <span lang="uk">Про нас</span>
-                            <span lang="en">About us</span>
-                        </a>
-                    </li>
-                    <li class="navigation__item">
-                        <button id="login" class="btn-secondary">
-                            <span lang="uk">Увійти</span>
-                            <span lang="en">Log in</span>
-                        </button>
-                    </li>
-                    <li class="navigation__item">
-                        <a id="signup" class="link btn-primary" href="https://dp.dataocean.us/auth/sign-up/">
-                            <span lang="uk">Зареєструватись</span>
-                            <span lang="en">Sign up</span>
-                        </a>
-                    </li>
-                    <li class="navigation__item">
-                        <button id="change-lang" class="link link_start select_lang">
-                            <img lang="en" src="img/ukraine_flag.svg">
-                            <span class="select_lang_span" lang="en">Українська</span>
-                            <img lang="uk" src="img/usa_flag.svg">
-                            <span class="select_lang_span" lang="uk">English</span>
-                        </button>
-                    </li>
+                </label>
+                <ul>
+                    <li><a class="link link_start" href="#product">
+                        <span lang="uk">Про Data Platform</span>
+                        <span lang="en">About Data Platform</span>
+                    </a></li>
+                    <li><a class="link link_start" href="#about">
+                        <span lang="uk">Про нас</span>
+                        <span lang="en">About us</span>
+                    </a></li>
+                    <li><button id="login" class="btn-secondary">
+                        <span lang="uk">Увійти</span>
+                        <span lang="en">Log in</span>
+                    </button></li>
+                    <li><a id="signup" class="link btn-primary" href="https://dp.dataocean.us/auth/sign-up/">
+                        <span lang="uk">Зареєструватись</span>
+                        <span lang="en">Sign up</span>
+                    </a></li>
+                    <li><button id="change-lang" class="link link_start select_lang">
+                        <img lang="en" src="img/ukraine_flag.svg">
+                        <span class="select_lang_span" lang="en">Українська</span>
+                        <img lang="uk" src="img/usa_flag.svg">
+                        <span class="select_lang_span" lang="uk">English</span>
+                    </button></li>
                 </ul>
             </nav>
         </header>
 
-        <section class="header section section_head">
+        <section class="section_head">
             <div class="container">
                 <div class="row row_vertical-spaces">
                     <div class="col-lg-6 landing-image">
@@ -103,29 +94,7 @@
                 </div>
             </div>
         </section>
-
-        <!-- <section class="section section_background">
-            <div class="container">
-                <div class="row row_vertical-spaces">
-                    <div class="col-lg-6 landing-image__image">
-                        <img src="img/intro.png">
-                    </div>
-                    <div class="col-lg-6 margin-list">
-                        <img class="margin-list__item" src="img/image%208.svg">
-                        <h2 class="h2 margin-list__item">
-                            <span lang="uk">Майбутнє за відкритими даними</span>
-                            <span lang="en">Open data is the thing of the future</span>
-                        </h2>
-                        <div class="margin-list__item paragraph">
-                            <span lang="uk">Data Ocean — провайдер зручного доступу до відкритих даних.
-                            <br>Ми розробляємо спеціальний сервіс, де Ви зможете отримати доступ до всіх важливих та існуючих реєстрів, даних та звітностей.</span>
-                            <span lang="en">Data Ocean is a provider with a convenient access to open data.
-                            <br>We are developing a special service where you can access all important and existing registers, data and reports.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> -->
+    </div>
 
     <section id="product" class="section section_flying-pixels">
         <div class="container">

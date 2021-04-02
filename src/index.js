@@ -7,6 +7,7 @@ import {t, changeLang, onChangeLang} from './localization'
 import SubscriptionsTable from './subscriptions-table'
 import 'jquery.cookie';
 import cookie from './cookie';
+import { refreshLang, generateHtml } from "./localization";
 
 onChangeLang(() => {
     $('#name')[0].placeholder = t('placeholderName');
@@ -44,12 +45,11 @@ $(() => {
 });
 
 $(() => {
-    const firstName = $.cookie('firstname');
-    const lastName = $.cookie('lastname');
+    const firstName = cookie.get('firstname');
+    const lastName = cookie.get('lastname');
     if ( !firstName && !lastName ) {
         return
     } else {
-        localStorage.getItem('lang');
         $('#login').replaceWith(/*html*/`
         <span class="user_profile">
             <ion-icon class="profile_icon" name="person-circle-outline"></ion-icon>
@@ -61,23 +61,22 @@ $(() => {
         <ul class="submenu">
             <li id="user-profile" class="submenu_item">
                 <a class="link link_start">
-                    <span lang="uk">Мій кабінет</span>
-                    <span lang="en">My profile</span>
+                    ${generateHtml('Мій кабінет', 'My profile')}
                 </a>
             </li>
             <li id="logout" class="submenu_item">
                 <a class="link link_start ">
-                    <span lang="uk">Вийти</span>
-                    <span lang="en">Log out</span>
+                    ${generateHtml('Вийти', 'Log out')}
                 </a>
             </li>
         </ul>
         `);
+        refreshLang();
         $('#signup').hide();
     }
     
     $('#user-profile').on('click', function () {
-        document.location = process.env.DO_FRONTEND_HOST + '/system/profile/projects/?lang=' + localStorage.getItem('lang');
+        document.location = process.env.DO_FRONTEND_HOST + '/system/profile/projects/';
     });
 
     $('#logout').on('click', function() {
@@ -91,7 +90,7 @@ $(() => {
 
 $('#login').on('click', function () {
     $('.login-modal').toggle();
-    $(document).on('click', function (e) {
+    $('.login-modal').on('click', function (e) {
         if ($(e.target).is('.login-modal')) {
             $('.login-modal').hide();
         }
@@ -154,8 +153,11 @@ $('#loginform').on('submit', function(event){
             document.location = process.env.DO_FRONTEND_HOST + '/system/home/';
         },
         error: function (jqXHR, textStatus, errorMessage) {
-            var errMessage = JSON.parse(jqXHR.responseText)[Object.keys(JSON.parse(jqXHR.responseText))[0]][0];
-            $('#error_login').html(errMessage);
+            const key = Object.keys(jqXHR.responseJSON)[0];
+            const keyMessage = Object.values(jqXHR.responseJSON)[0][0];
+            key === 'non_field_errors' ? $('#error_login').html(keyMessage) : $('#error_login').html(`${key}: ${keyMessage}`);
+            // var errMessage = JSON.parse(jqXHR.responseText)[Object.keys(JSON.parse(jqXHR.responseText))[0]][0];
+            // $('#error_login').html(errMessage);
         }
     })
 })
@@ -302,11 +304,6 @@ $('#api-docs').on('click', function () {
 
 $('#api-button').on('click', function () {
     window.open(process.env.DO_FRONTEND_HOST + '/system/home/?lang=' + localStorage.getItem('lang'));
-});
-
-$('#menu-btn').on('click', function (event) {
-    event.preventDefault();
-    $('#navigation').fadeToggle();
 });
 
 const getPaySchema = () => {

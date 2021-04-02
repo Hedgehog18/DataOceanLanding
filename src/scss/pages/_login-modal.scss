@@ -45,6 +45,10 @@
         align-self: center;
         margin-top: 5%;
     }
+    @media (max-width: $md) {
+        width: auto;
+        left: 70%;
+    }
 }
 
 .login-group {
@@ -57,20 +61,3 @@
         border-radius: $spacer;
     }
 }
-
-.user_profile {
-    padding: 10px;
-}
-.user_profile:hover {
-    background: #E9F0FD;
-    padding: 10px;
-    border-radius: 6px;
-    cursor: pointer;
-}
-.profile_icon {
-    width: 36px;
-    height: 36px;
-    color: #4F5979;
-    vertical-align: middle;
-}
-

@@ -10,6 +10,9 @@ const set = (name, value, options = {}) => {
         ...options,
     });
 }
+const get = (name) => {
+    return $.cookie(name)
+}
 
 const remove = (name, options = {}) => {
     $.removeCookie(name, {
@@ -21,5 +24,6 @@ const remove = (name, options = {}) => {
 
 export default {
     set,
+    get,
     remove,
 }

@@ -54,35 +54,3 @@
     }
 }
 
-.submenu {
-    display: none;
-}
-
-.submenu {
-    position: absolute;
-    background: white;
-    border-radius: 6px;
-    z-index: 5;
-    cursor: pointer;
-    width: 150px;
-    outline: 1px solid #E6E8EE;
-    transition: 0.5s ease-in-out;
-    &_item {
-        font-weight: 500;
-        padding: 4px;
-        background: white;
-        margin: 1px;
-        border-top-style: black solid;
-    }
-    li:hover {
-        background: #E9F0FD;
-    }
-}
-
-#logout {
-    border-top: 1px solid #E6E8EE;
-}
-
-.navigation li:hover .submenu {
-    display: block;
-}
