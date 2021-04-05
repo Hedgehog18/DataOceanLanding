@@ -90,11 +90,11 @@ $(() => {
 
 $('#login').on('click', function () {
     $('.login-modal').toggle();
-    $('.login-modal').on('click', function (e) {
-        if ($(e.target).is('.login-modal')) {
-            $('.login-modal').hide();
-        }
-    });
+});
+$(document).on('click', '.login-modal', function (e) {
+    if ($(e.target).is('.login-modal')) {
+        $('.login-modal').hide();
+    }
 });
 
 const getLoginSchema = () => {
