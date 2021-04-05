@@ -74,7 +74,7 @@ $(() => {
         refreshLang();
         $('#signup').hide();
     }
-    
+
     $('#user-profile').on('click', function () {
         document.location = process.env.DO_FRONTEND_HOST + '/system/profile/projects/';
     });
@@ -90,10 +90,8 @@ $(() => {
 
 $('#login').on('click', function () {
     $('.login-modal').toggle();
-    $('.login-modal').on('click', function (e) {
-        if ($(e.target).is('.login-modal')) {
-            $('.login-modal').hide();
-        }
+    $('.login-modal').one('click', function (e) {
+        $('.login-modal').hide();
     });
 });
 
@@ -350,7 +348,7 @@ $('#pay-form').on('submit', function(event){
     let payData = {
         name: this.username_pay.value + ' ' + this.surname_pay.value,
         email: this.email_pay.value,
-        subject: this.username_pay.value + ' ' + this.phone_pay.value, 
+        subject: this.username_pay.value + ' ' + this.phone_pay.value,
         message: this.question_pay.value ?  t('note') + ': ' + this.question_pay.value : t('nomark'),
     }
     $('.open-payform').fadeOut();
