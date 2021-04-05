@@ -1,5 +1,6 @@
 .container {
     max-width: 1280px;
+    overflow-x: hidden;
     margin: 0 auto;
     padding-left: $spacer * 2;
     padding-right: $spacer * 2;
@@ -25,6 +26,11 @@
 
     &_head {
         margin-bottom: $spacer * 20;
+        @media (max-width: $lg) {
+            display: inline-flex;
+            margin-top: $spacer * 8;
+            margin-bottom: $spacer;
+        }
     }
 
     &__header {
@@ -61,8 +67,6 @@
         padding: 10px 0px 10px;
     }
 }
-
-
 
 @import 'footer';
 @import 'header';

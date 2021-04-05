@@ -70,6 +70,10 @@ let langs = {
     nomark: {
         uk: 'Примітка відстуня',
         en: 'No mark'
+    },
+    password: {
+        uk: 'Пароль',
+        en: 'Password'
     }
 };
 
@@ -78,7 +82,7 @@ export const t = (key) => {
     return langs[key][currentLang];
 };
 
-$(document).ready(() => {
+$(() => {
     const langFromLocalStorage = localStorage.getItem('lang');
     const langFromUrl = new URLSearchParams(location.search).get('lang');
 

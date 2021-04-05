@@ -1,87 +1,170 @@
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: $spacer * 5;
-    padding-bottom: $spacer * 2;
-    font-size: $font-size-sm;
-    z-index: 2;
-    position: relative;
-    flex-direction: column;
-
-    font-weight: 600;
-    &__item {
-        & + & {
-            margin-top: $spacer * 4;
-        }
-    }
-
-    @media (min-width: $md) {
-        flex-direction: row;
-
-        &__item {
-            & + & {
-                margin-top: none;
-            }
-        }
-    }
-
-    @media (max-width: $lg) {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    @media (max-width: $sm) {
-        flex-direction: row;
-        align-items: baseline;
-    }
+header {
+    padding: 2%;
+    text-align: center;
 }
 
 .header-logo {
     display: flex;
     flex-direction: row;
-    object-fit: contain;
+    float: left;
     cursor: pointer;
-    &_DO {
-        max-width: 40%;
-    }
 
     &_PEP {
         align-self: flex-end;
-        max-width: 30%;
-        margin-bottom: -1%;
+        margin-bottom: -3%;
         padding-left: 7%;
     }
-    @media (min-width: $sm) {
-        margin-top: -5%;
-        flex-direction: column;
 
+    @media (max-width: $sm) {
         &_DO {
-            max-width: 20%;
+            max-width: 30%;
         }
-
         &_PEP {
-            align-self: flex-start;
-            max-width: 20%;
-            padding-top: 2%;
-            padding-left: 1%;
+            max-width: 30%;
         }
     }
 
-    @media (min-width: $md) {
+    @media (min-width: $lg) {
         flex-direction: column;
-        max-width: 20%;
-        margin-top: -1%;
-
-        &_DO {
-            max-width: 167px;
-        }
 
         &_PEP {
-            max-width: 159px;
             align-self: flex-start;
             padding-top: 27px;
             padding-left: 4%;
+        }
+    }
+}
+
+.menu {
+    float: right;
+    padding-top: 1%;
+}
+
+.menu ul {
+    // display: flex;
+    align-items: center;
+    // width: 100%;
+    height: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+.menu ul li {
+    display: inline-block;
+    font-weight: bold;
+    margin-left: $spacer * 3;
+}
+
+#menuToggle {
+    display: none;
+}
+
+.menu-icon {
+    display: none;
+}
+
+@media screen and (max-width: $md) {
+    .menu {
+        // width: 100%;
+        height: auto;
+    }
+
+    .menu ul {
+        display: block;
+        max-height: 0;
+    	overflow: hidden;
+    	transition: max-height 0.3s;
+    }
+
+    .menu ul li {
+        text-align: right;
+        width: 100%;
+        padding: 10px 0 1px 0;
+        margin-left: 0;
+    }
+
+    .menu-icon {
+        display: block;
+        position: absolute;
+        width: 100px;
+        // height: inherit;
+        top: 1%;
+        right: 0;
+        line-height: 60px;
+    }
+
+    #menuToggle:checked ~ ul {
+        max-height: 350px;
+    }
+    .menu-icon ion-icon {
+        font-size: 30px;
+    }
+}
+
+.user_profile {
+    padding: 10px;
+    @media (max-width: $md) {
+        display: inline-block;
+        padding: 0;
+    }
+}
+
+.user_profile:hover {
+    background: #E9F0FD;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+
+    @media (max-width: $md) {
+        padding: 0;
+    }
+}
+
+.profile_icon {
+    width: 36px;
+    height: 36px;
+    color: #4F5979;
+    vertical-align: middle;
+}
+
+.submenu {
+    display: none;
+}
+
+.submenu {
+    position: absolute;
+    flex-direction: column;
+    text-align: start;
+    background: white;
+    border-radius: 6px;
+    z-index: 5;
+    cursor: pointer;
+    width: 150px;
+    outline: 1px solid #E6E8EE;
+    transition: 0.5s ease-in-out;
+    &_item {
+        font-weight: 500;
+        padding: 4px;
+        background: white;
+        margin: 1px;
+        border-top-style: black solid;
+    }
+    @media screen and (max-width: $md) {
+        outline: none;
+    }
+}
+
+#logout {
+    border-top: 1px solid #E6E8EE;
+}
+
+.menu li:hover .submenu {
+    display: block;
+    @media screen and (max-width: $md) {
+        display: contents;
+
+        .submenu_item {
+            background:none;
         }
     }
 }

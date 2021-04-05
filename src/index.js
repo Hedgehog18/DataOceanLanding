@@ -5,7 +5,9 @@ import $ from 'jquery';
 import 'jquery-validation';
 import {t, changeLang, onChangeLang} from './localization'
 import SubscriptionsTable from './subscriptions-table'
-// import 'jquery-modal';
+import 'jquery.cookie';
+import cookie from './cookie';
+import { refreshLang, generateHtml } from "./localization";
 
 onChangeLang(() => {
     $('#name')[0].placeholder = t('placeholderName');
@@ -14,9 +16,10 @@ onChangeLang(() => {
     $('#username_pay')[0].placeholder = t('placeholderName');
     $('#surname_pay')[0].placeholder = t('placeholderLastName');
     $('#question_pay')[0].placeholder = t('placeholderPayNote');
+    $('#password_login')[0].placeholder = t('password');
 })
 
-$(document).ready(() => {
+$(() => {
     setInterval(() => {
         setTimeout(() => {
             $('#explore').addClass('transparency')
@@ -41,6 +44,127 @@ $(document).ready(() => {
     }, 5500);
 });
 
+$(() => {
+    const firstName = cookie.get('firstname');
+    const lastName = cookie.get('lastname');
+    if ( !firstName && !lastName ) {
+        return
+    } else {
+        $('#login').replaceWith(/*html*/`
+        <span class="user_profile">
+            <ion-icon class="profile_icon" name="person-circle-outline"></ion-icon>
+            <a class="link link_start">
+                ${firstName} ${lastName[0]}.
+            </a>
+            <ion-icon class="arrow_icon" name="chevron-down-outline"></ion-icon>
+        </span>
+        <ul class="submenu">
+            <li id="user-profile" class="submenu_item">
+                <a class="link link_start">
+                    ${generateHtml('Мій кабінет', 'My profile')}
+                </a>
+            </li>
+            <li id="logout" class="submenu_item">
+                <a class="link link_start ">
+                    ${generateHtml('Вийти', 'Log out')}
+                </a>
+            </li>
+        </ul>
+        `);
+        refreshLang();
+        $('#signup').hide();
+    }
+    
+    $('#user-profile').on('click', function () {
+        document.location = process.env.DO_FRONTEND_HOST + '/system/profile/projects/';
+    });
+
+    $('#logout').on('click', function() {
+        cookie.remove('token');
+        cookie.remove('firstname');
+        cookie.remove('lastname');
+        cookie.remove('email');
+        document.location.reload();
+    })
+});
+
+$('#login').on('click', function () {
+    $('.login-modal').toggle();
+    $('.login-modal').on('click', function (e) {
+        if ($(e.target).is('.login-modal')) {
+            $('.login-modal').hide();
+        }
+    });
+});
+
+const getLoginSchema = () => {
+    return {
+        errorClass: "input_error",
+        rules: {
+            email: {
+                required: true,
+                email: true,
+            },
+            password: {
+                minlength: 6,
+                required: true,
+            },
+        },
+        messages: {
+            email: {
+                required: t('emailRequired'),
+                email: t('emailCorrect'),
+            },
+            password: {
+                minlength: t('questionAsk'),
+                required: t('questionAsk'),
+            }
+        }
+    }
+};
+
+$('#loginform').on('submit', function(event){
+    event.preventDefault();
+    let loginForm = $(this);
+    loginForm.validate(getLoginSchema());
+    if (!loginForm.valid()) {
+        return
+    }
+    $('#error_login').html('');
+
+    $.ajax({
+        url: process.env.DO_BACKEND_HOST + '/api/rest-auth/login/',
+        type: 'POST',
+        data: {
+            email: this.email_login.value,
+            password: this.password_login.value,
+        },
+        headers: {
+            ['Accept-Language']: localStorage.getItem('lang'),
+        },
+        success: function(data, status, xhr) {
+            if (xhr.status !== 200) {
+                return
+            }
+            cookie.set('token', data.key);
+            cookie.set('firstname', data.user.first_name);
+            cookie.set('lastname', data.user.last_name);
+            cookie.set('email', data.user.email);
+            document.location = process.env.DO_FRONTEND_HOST + '/system/home/';
+        },
+        error: function (jqXHR, textStatus, errorMessage) {
+            const key = Object.keys(jqXHR.responseJSON)[0];
+            const keyMessage = Object.values(jqXHR.responseJSON)[0][0];
+            key === 'non_field_errors' ? $('#error_login').html(keyMessage) : $('#error_login').html(`${key}: ${keyMessage}`);
+            // var errMessage = JSON.parse(jqXHR.responseText)[Object.keys(JSON.parse(jqXHR.responseText))[0]][0];
+            // $('#error_login').html(errMessage);
+        }
+    })
+})
+
+$('#forgot_password').on('click', function () {
+    document.location = process.env.DO_FRONTEND_HOST + '/auth/restore-pass/?lang=' + localStorage.getItem('lang');
+});
 
 $(document).ready(() => {
   // const _sendMailBtn = document.querySelector(".sendmail-btn");
@@ -114,7 +238,7 @@ const getSchema = () => {
     }
 };
 
-$('#contact-form').submit(function(event){
+$('#contact-form').on('submit', function(event){
     event.preventDefault();
     let form = $(this);
     form.validate(getSchema())
@@ -157,7 +281,7 @@ $('#contact-form').submit(function(event){
     })
 });
 
-$('#change-lang').click(function(event) {
+$('#change-lang').on('click', function(event) {
     event.preventDefault();
     let langUser = 'uk';
     if (localStorage.getItem('lang') === 'uk') {
@@ -180,11 +304,6 @@ $('#api-docs').on('click', function () {
 
 $('#api-button').on('click', function () {
     window.open(process.env.DO_FRONTEND_HOST + '/system/home/?lang=' + localStorage.getItem('lang'));
-});
-
-$('#menu-btn').on('click', function (event) {
-    event.preventDefault();
-    $('#navigation').fadeToggle();
 });
 
 const getPaySchema = () => {
@@ -221,7 +340,7 @@ const getPaySchema = () => {
     }
 };
 
-$('#pay-form').submit(function(event){
+$('#pay-form').on('submit', function(event){
     event.preventDefault();
     let payForm = $(this);
     payForm.validate(getPaySchema())
@@ -280,3 +399,14 @@ $('#privacy_policy').on('click', function () {
 });
 
 new SubscriptionsTable('#subs-table').init()
+
+// $('#signup').on('click', function () {
+//     $('.signup-modal').toggle();
+//     $(document).on('click', function (e) {
+//         if ($(e.target).is('.signup-modal')) {
+//             $('.signup-modal').hide();
+//         }
+//     });
+// });
+
+
