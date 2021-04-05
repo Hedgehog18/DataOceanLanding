@@ -90,7 +90,7 @@ $(() => {
 
 $('#login').on('click', function () {
     $('.login-modal').toggle();
-    $('.login-modal').one('click', function (e) {
+    $('.login-modal').on('click', function (e) {
         if ($(e.target).is('.login-modal')) {
             $('.login-modal').hide();
         }
