@@ -19,6 +19,16 @@ onChangeLang(() => {
     $('#password_login')[0].placeholder = t('password');
 })
 
+$(document).ajaxError(function (e, jqXHR, ajaxSettings, thrownError) {
+    if (Math.trunc(jqXHR.status/100) === 5 || jqXHR.status === 0 || exception === 'timeout' || exception === 'abort')
+    {
+        location.replace('./500.html');
+    } else
+    {
+        alert(`${t('messageError \n')} ${thrownError}`);
+    }
+})
+
 $(window).on('load', () => {
     $('#preloader').fadeOut('slow');
 })
