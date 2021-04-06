@@ -53,6 +53,10 @@ header {
     display: inline-block;
     font-weight: bold;
     margin-left: $spacer * 3;
+    
+    @media screen and (max-width: $lg) {
+        margin-left: $spacer * 2;
+    }
 }
 
 #menuToggle {

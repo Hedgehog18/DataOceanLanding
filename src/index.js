@@ -19,6 +19,10 @@ onChangeLang(() => {
     $('#password_login')[0].placeholder = t('password');
 })
 
+$(window).on('load', () => {
+    $('#preloader').fadeOut('slow');
+})
+
 $(() => {
     setInterval(() => {
         setTimeout(() => {
