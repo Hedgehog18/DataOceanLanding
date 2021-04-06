@@ -27,7 +27,11 @@ $(document).ajaxError(function (e, jqXHR, ajaxSettings, thrownError) {
     {
         alert(`${t('messageError \n')} ${thrownError}`);
     }
-});
+})
+
+$(window).on('load', () => {
+    $('#preloader').fadeOut('slow');
+})
 
 $(() => {
     setInterval(() => {
