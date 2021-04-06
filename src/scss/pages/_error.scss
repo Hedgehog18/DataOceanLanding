@@ -29,8 +29,8 @@
 }
 
 .error_title {
-font-size: 32px;
-font-weight: 700;
+    font-size: 32px;
+    font-weight: 700;
 }
 
 .error_text {
@@ -40,6 +40,23 @@ font-weight: 700;
 }
 
 .error_block {
+    margin-top: 7%;
+
+    img {
+        max-width: 100%;
+    }
+
+    &_500 {
+        color: #00316D;
+
+        a {
+            text-decoration: none;
+        }
+        .error_title {
+            margin: 10% 0;
+        }
+    }
+
     .btn-primary {
         background-color: none;
         outline: auto;

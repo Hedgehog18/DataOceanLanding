@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Server error</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="shortcut icon" href="img/faviconblueback.ico" type="image/x-icon">
+</head>
+<body>
+    <header class="container">
+        <figure class="header-logo">
+            <img src="img/logo.svg" class="header-logo_DO link-platform">
+            <img src="img/logo_pep.svg" class="header-logo_PEP link-cpk">
+        </figure>
+        <nav class="menu">
+            <input type="checkbox" id="menuToggle">
+            <label for="menuToggle" class="menu-icon">
+                <ion-icon name="menu-outline"></ion-icon>
+            </label>
+            <ul>
+                <li><a class="link link_start" href="./#product">
+                    <span lang="uk">Про Data Platform</span>
+                    <span lang="en">About Data Platform</span>
+                </a></li>
+                <li><a class="link link_start" href="./#about">
+                    <span lang="uk">Про нас</span>
+                    <span lang="en">About us</span>
+                </a></li>
+                <li><button id="change-lang" class="link link_start select_lang">
+                    <img lang="en" src="img/ukraine_flag.svg">
+                    <span class="select_lang_span" lang="en">Українська</span>
+                    <img lang="uk" src="img/usa_flag.svg">
+                    <span class="select_lang_span" lang="uk">English</span>
+                </button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <div class="container">
+            <div class="error_block error_block_500 row row_vertical-spaces">
+                <div class="col-sm-6">
+                    <img src="img/500.svg">
+                </div>
+                <div class="col-sm-6">
+                    <div class="error_title">
+                        <span lang="uk">Внутрішня помилка серверу</span>
+                        <span lang="en">Internal server error</span>
+                    </div>
+                    <a class="btn-primary" href=".">
+                        <span lang="uk">На головну</span>
+                        <span lang="en">To the main page</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

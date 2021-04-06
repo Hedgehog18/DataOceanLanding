@@ -43,6 +43,11 @@ module.exports = {
       filename: "404.html",
       chunks: ['error'],
     }),
+    new HtmlWebpackPlugin({
+      template: './500.html',
+      filename: "500.html",
+      chunks: ['error'],
+    }),
     new CopyPlugin({
       patterns: [
         { from: "./img", to: path.resolve(__dirname, 'dist/img') },
