@@ -11,7 +11,7 @@ module.exports = {
   context: path.resolve(__dirname, 'src'),
   entry: {
     main: './index.js',
-    error: 'src/errorScripts.js',
+    error: './errorScripts.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),

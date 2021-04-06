@@ -1,6 +1,5 @@
 import './scss/main.scss';
 import { allowedLanguages, t, changeLang } from './localization';
-// import { allowedLanguages, t, changeLang } from './localization';
 
 $('.link-platform').on('click', function () {
     location.replace(`${process.env.DO_FRONTEND_HOST}/system/home/?lang=${localStorage.getItem('lang')}`);
