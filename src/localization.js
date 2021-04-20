@@ -24,11 +24,11 @@ let langs = {
         uk: 'Завелика кількість символів',
         en: 'Too many symbols',
     },
-    usernameRequired: {
+    firstNameRequired: {
         uk: 'Будь ласка, введіть Ваше ім\'я',
         en: 'Enter your First Name, please',
     },
-    surnameRequired: {
+    lastNameRequired: {
         uk: 'Будь ласка, введіть Ваше прізвище',
         en: 'Enter your Last Name, please',
     },
@@ -48,7 +48,7 @@ let langs = {
         uk: 'Будь ласка, поставте своє запитання',
         en: 'Ask us your question, please',
     },
-    placeholderName: {
+    placeholderFirstName: {
         uk: 'Петро',
         en: 'John',
     },
@@ -75,6 +75,14 @@ let langs = {
     password: {
         uk: 'Пароль',
         en: 'Password'
+    },
+    passwordRequired: {
+        uk: 'Будь ласка, введіть пароль',
+        en: 'Enter your password, please',
+    },
+    dataNoCorrect: {
+        uk: 'Будь ласка, заповніть поле коректно',
+        en: 'Please fill in the field correct',
     }
 };
 
