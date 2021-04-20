@@ -10,7 +10,7 @@ header {
     cursor: pointer;
 
     &_PEP {
-        align-self: flex-end;
+        align-self: center;
         margin-bottom: -3%;
         padding-left: 7%;
     }
@@ -144,7 +144,8 @@ header {
     z-index: 5;
     cursor: pointer;
     width: 150px;
-    outline: 1px solid #E6E8EE;
+    // outline: 1px solid #E6E8EE;
+    border: 1px solid #E6E8EE;
     transition: 0.5s ease-in-out;
     &_item {
         font-weight: 500;
@@ -154,13 +155,21 @@ header {
         border-top-style: black solid;
     }
     @media screen and (max-width: $md) {
-        outline: none;
+        border: none;
+    }
+
+    hr {
+        border: none;
+        background-color: #E6E8EE;
+        color: #E6E8EE;
+        height: 1px;
+        margin: 0%;
     }
 }
 
-#logout {
-    border-top: 1px solid #E6E8EE;
-}
+// #logout {
+//     border-top: 1px solid #E6E8EE;
+// }
 
 .menu li:hover .submenu {
     display: block;

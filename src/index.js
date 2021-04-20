@@ -20,12 +20,8 @@ onChangeLang(() => {
 })
 
 $(document).ajaxError(function (e, jqXHR, ajaxSettings, thrownError) {
-    if (Math.trunc(jqXHR.status/100) === 5 || jqXHR.status === 0 || exception === 'timeout' || exception === 'abort')
-    {
+    if (Math.trunc(jqXHR.status/100) === 5 || jqXHR.status === 0 || exception === 'timeout' || exception === 'abort') {
         location.replace('./500.html');
-    } else
-    {
-        alert(`${t('messageError \n')} ${thrownError}`);
     }
 })
 
@@ -78,6 +74,7 @@ $(() => {
                     ${generateHtml('Мій кабінет', 'My profile')}
                 </a>
             </li>
+            <hr>
             <li id="logout" class="submenu_item">
                 <a class="link link_start ">
                     ${generateHtml('Вийти', 'Log out')}
@@ -98,6 +95,7 @@ $(() => {
         cookie.remove('firstname');
         cookie.remove('lastname');
         cookie.remove('email');
+        cookie.remove('lang');
         document.location.reload();
     })
 });
@@ -164,6 +162,7 @@ $('#loginform').on('submit', function(event){
             cookie.set('firstname', data.user.first_name);
             cookie.set('lastname', data.user.last_name);
             cookie.set('email', data.user.email);
+            cookie.set('lang', data.user.language)
             document.location = process.env.DO_FRONTEND_HOST + '/system/home/';
         },
         error: function (jqXHR, textStatus, errorMessage) {
@@ -305,19 +304,19 @@ $('#change-lang').on('click', function(event) {
 });
 
 $('.js-link-platform').on('click', function () {
-    window.open(process.env.DO_FRONTEND_HOST + '/system/home/?lang=' + localStorage.getItem('lang'));
+    window.open(`${process.env.DO_FRONTEND_HOST}/system/home/?lang=${localStorage.getItem('lang')}`);
+});
+
+$('#signup').on('click', function () {
+    window.open(`${process.env.DO_FRONTEND_HOST}/auth/sign-up/?lang=${localStorage.getItem('lang')}`);
 });
 
 $('.link-cpk').on('click', function () {
-    window.open('https://pep.org.ua/'+ localStorage.getItem('lang'));
+    window.open(`https://pep.org.ua/${localStorage.getItem('lang')}`);
 });
 
 $('#api-docs').on('click', function () {
-    window.open(process.env.DO_BACKEND_HOST + '/schema/redoc/');
-});
-
-$('#api-button').on('click', function () {
-    window.open(process.env.DO_FRONTEND_HOST + '/system/home/?lang=' + localStorage.getItem('lang'));
+    window.open(`${process.env.DO_BACKEND_HOST}/schema/redoc/`);
 });
 
 const getPaySchema = () => {
@@ -395,21 +394,12 @@ $('#payform-close').on('click', function () {
     $('.open-payform').toggle();
 });
 
-
 $('#terms_and_conditions').on('click', function () {
-    if (localStorage.getItem('lang') === 'uk') {
-        location.assign(process.env.DO_FRONTEND_HOST + '/docs/TermsAndConditionsUk.html');
-    } else {
-        location.assign(process.env.DO_FRONTEND_HOST + '/docs/TermsAndConditionsEn.html');
-    }
+    location.assign(`${process.env.DO_FRONTEND_HOST}/docs/${localStorage.getItem('lang')}/TermsAndConditions.html`);
 });
 
 $('#privacy_policy').on('click', function () {
-    if (localStorage.getItem('lang') === 'uk') {
-        location.assign(process.env.DO_FRONTEND_HOST + '/docs/PrivacyPolicyUk.html');
-    } else {
-        location.assign(process.env.DO_FRONTEND_HOST + '/docs/PrivacyPolicyEn.html');
-    }
+    location.assign(`${process.env.DO_FRONTEND_HOST}/docs/${localStorage.getItem('lang')}/PrivacyPolicy.html`);
 });
 
 new SubscriptionsTable('#subs-table').init()
