@@ -10,20 +10,32 @@ import cookie from './cookie';
 import { refreshLang, generateHtml } from "./localization";
 
 onChangeLang(() => {
-    $('#name')[0].placeholder = t('placeholderName');
-    $('#surname')[0].placeholder = t('placeholderLastName');
+    $('#firstName')[0].placeholder = t('placeholderFirstName');
+    $('#lastName')[0].placeholder = t('placeholderLastName');
     $('#question')[0].placeholder = t('placeholderQuestion');
-    $('#username_pay')[0].placeholder = t('placeholderName');
-    $('#surname_pay')[0].placeholder = t('placeholderLastName');
-    $('#question_pay')[0].placeholder = t('placeholderPayNote');
-    $('#password_login')[0].placeholder = t('password');
+    $('#firstNamePay')[0].placeholder = t('placeholderFirstName');
+    $('#lastNamePay')[0].placeholder = t('placeholderLastName');
+    $('#questionPay')[0].placeholder = t('placeholderPayNote');
+    $('#passwordLogin')[0].placeholder = t('password');
 })
 
 $(document).ajaxError(function (e, jqXHR, ajaxSettings, thrownError) {
-    if (Math.trunc(jqXHR.status/100) === 5 || jqXHR.status === 0 || exception === 'timeout' || exception === 'abort') {
+    if (Math.trunc(jqXHR.status/100) === 5 || jqXHR.status === 0) {
         location.replace('./500.html');
     }
 })
+
+$.validator.methods.email = function(value, element) {
+    return this.optional(element) || /[a-z]+@[a-z]+\.[a-z]+/.test(value);
+}
+
+$.validator.methods.text = function(value, element) {
+    return this.optional(element) || /^[a-zA-Zа-яА-ЯёЁЇїІіЄєҐґ'-. ]+$/.test(value);
+}
+
+$.validator.methods.tel = function(value, element) {
+    return this.optional(element) || /^[0-9-()+ ]+$/.test(value);
+}
 
 $(window).on('load', () => {
     $('#preloader').fadeOut('slow');
@@ -113,23 +125,23 @@ const getLoginSchema = () => {
     return {
         errorClass: "input_error",
         rules: {
-            email: {
+            emailLogin: {
                 required: true,
                 email: true,
             },
-            password: {
-                minlength: 6,
+            passwordLogin: {
+                minlength: 8,
                 required: true,
             },
         },
         messages: {
-            email: {
+            emailLogin: {
                 required: t('emailRequired'),
                 email: t('emailCorrect'),
             },
-            password: {
-                minlength: t('questionAsk'),
-                required: t('questionAsk'),
+            passwordLogin: {
+                minlength: t('minSymbols'),
+                required: t('passwordRequired'),
             }
         }
     }
@@ -148,8 +160,8 @@ $('#loginform').on('submit', function(event){
         url: process.env.DO_BACKEND_HOST + '/api/rest-auth/login/',
         type: 'POST',
         data: {
-            email: this.email_login.value,
-            password: this.password_login.value,
+            email: this.emailLogin.value,
+            password: this.passwordLogin.value,
         },
         headers: {
             ['Accept-Language']: localStorage.getItem('lang'),
@@ -169,8 +181,6 @@ $('#loginform').on('submit', function(event){
             const key = Object.keys(jqXHR.responseJSON)[0];
             const keyMessage = Object.values(jqXHR.responseJSON)[0][0];
             key === 'non_field_errors' ? $('#error_login').html(keyMessage) : $('#error_login').html(`${key}: ${keyMessage}`);
-            // var errMessage = JSON.parse(jqXHR.responseText)[Object.keys(JSON.parse(jqXHR.responseText))[0]][0];
-            // $('#error_login').html(errMessage);
         }
     })
 })
@@ -205,49 +215,53 @@ const getSchema = () => {
     return {
         errorClass: "input_error",
         rules: {
-            username: {
+            firstName: {
                 required: true,
                 minlength: 2,
+                text: true,
             },
-            surname: {
+            lastName: {
                 required: true,
                 minlength: 2,
+                text: true,
             },
             email: {
                 required: true,
                 email: true,
             },
             phone: {
-                number: true,
+                tel: true,
                 minlength: 10,
-                maxlength: 15
+                maxlength: 20,
             },
             question: {
                 required: true,
             },
         },
         messages: {
-            username: {
-                required: t('usernameRequired'),
+            firstName: {
+                required: t('firstNameRequired'),
                 minlength: t('minSymbols'),
+                text: t('dataNoCorrect'),
             },
-            surname: {
-                required: t('surnameRequired'),
+            lastName: {
+                required: t('lastNameRequired'),
                 minlength: t('minSymbols'),
+                text: t('dataNoCorrect'),
             },
             email: {
                 required: t('emailRequired'),
-                email: t('emailCorrect'),
+                email: t('dataNoCorrect'),
             },
             phone: {
-                number: t('phoneNumber'),
+                tel: t('dataNoCorrect'),
                 minlength: t('minSymbols'),
                 maxlength: t('maxSymbols'),
             },
             question: {
                 required: t('questionAsk'),
-            }
-        }
+            },
+        },
     }
 };
 
@@ -265,9 +279,9 @@ $('#contact-form').on('submit', function(event){
     }
 
     let data = {
-        name: this.username.value + ' ' + this.surname.value,
+        name: this.firstName.value + ' ' + this.lastName.value,
         email: this.email.value,
-        subject: this.username.value + ' ' + this.surname.value,
+        subject: this.firstName.value + ' ' + this.lastName.value,
         message: this.question.value + phoneNumber,
     }
 
@@ -323,32 +337,46 @@ const getPaySchema = () => {
     return {
         errorClass: "input_error",
         rules: {
-            username_pay: {
+            firstNamePay: {
                 required: true,
                 minlength: 2,
+                text: true,
             },
-            surname_pay: {
+            lastNamePay: {
                 required: true,
                 minlength: 2,
+                text: true,
             },
-            email_pay: {
+            emailPay: {
                 required: true,
                 email: true,
-            }
+            },
+            phonePay: {
+                tel: true,
+                minlength: 10,
+                maxlength: 20,
+            },
         },
         messages: {
-            username_pay: {
-                required: t('usernameRequired'),
+            firstNamePay: {
+                required: t('firstNameRequired'),
                 minlength: t('minSymbols'),
+                text: t('dataNoCorrect'),
             },
-            surname_pay: {
-                required: t('usernameRequired'),
+            lastNamePay: {
+                required: t('lastNameRequired'),
                 minlength: t('minSymbols'),
+                text: t('dataNoCorrect'),
             },
-            email_pay: {
+            emailPay: {
                 required: t('emailRequired'),
-                email: t('emailCorrect'),
-            }
+                email: t('dataNoCorrect'),
+            },
+            phonePay: {
+                tel: t('dataNoCorrect'),
+                minlength: t('minSymbols'),
+                maxlength: t('maxSymbols'),
+            },
         }
     }
 };
@@ -361,10 +389,10 @@ $('#pay-form').on('submit', function(event){
         return
     }
     let payData = {
-        name: this.username_pay.value + ' ' + this.surname_pay.value,
-        email: this.email_pay.value,
-        subject: this.username_pay.value + ' ' + this.phone_pay.value,
-        message: this.question_pay.value ?  t('note') + ': ' + this.question_pay.value : t('nomark'),
+        name: this.firstNamePay.value + ' ' + this.lastNamePay.value,
+        email: this.emailPay.value,
+        subject: this.firstNamePay.value + ' ' + this.phonePay.value,
+        message: this.questionPay.value ?  t('note') + ': ' + this.questionPay.value : t('nomark'),
     }
     $('.open-payform').fadeOut();
     $.ajax({

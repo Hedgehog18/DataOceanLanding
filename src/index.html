@@ -407,21 +407,21 @@
             </div>
             <div class="landing-feedback">
                 <div class="landing-feedback__left">
-                    <form class="form" id="contact-form">
+                    <form class="form" id="contact-form" novalidate>
                         <div class="form__row row row_vertical-spaces">
                             <div class="form-group col-lg-6">
-                                <label for="name" class="form-group__label form-group__label_required">
+                                <label for="firstName" class="form-group__label form-group__label_required">
                                     <span lang="uk">Ім’я</span>
                                     <span lang="en">First Name</span>
                                 </label>
-                                <input type="text" name="username" id="name" required class="input input_large" minlength="2">
+                                <input type="text" name="firstName" id="firstName" required class="input input_large">
                             </div>
                             <div class="form-group col-lg-6">
                                 <label for="surname" class="form-group__label form-group__label_required">
                                     <span lang="uk">Прізвище</span>
                                     <span lang="en">Last Name</span>
                                 </label>
-                                <input type="text" name="surname" id="surname" required class="input input_large" minlength="2">
+                                <input type="text" name="lastName" id="lastName" required class="input input_large">
                             </div>
                         </div>
                         <div class="form__row row row_vertical-spaces">
@@ -538,35 +538,35 @@
             <div class="payform-group">
                 <img id="payform-close" src="img/close.svg" href="#close-modal" rel="modal:close" class="close-modal">
 
-                <label for="username_pay" class="payform-group__label payform-group__label_required">
+                <label for="firstNamePay" class="payform-group__label payform-group__label_required">
                     <span lang="uk">Ім’я</span>
                     <span lang="en">First Name</span>
                 </label>
-                <input type="text" name="username_pay" id="username_pay" required class="input" minlength="2">
+                <input type="text" name="firstNamePay" id="firstNamePay" required class="input">
 
-                <label for="surname_pay" class="payform-group__label payform-group__label_required">
+                <label for="lastNamePay" class="payform-group__label payform-group__label_required">
                     <span lang="uk">Прізвище</span>
                     <span lang="en">Last Name</span>
                 </label>
-                <input type="text" name="surname_pay" id="surname_pay" required class="input" minlength="2">
+                <input type="text" name="lastNamePay" id="lastNamePay" required class="input">
 
-                <label for="email_pay" class="payform-group__label payform-group__label_required">
+                <label for="emailPay" class="payform-group__label payform-group__label_required">
                     <span lang="uk">Пошта</span>
                     <span lang="en">Email</span>
                 </label>
-                <input type="email" name="email_pay" required class="input" id="email_pay" placeholder="user@email.com">
+                <input type="email" name="emailPay" required class="input" id="emailPay" placeholder="user@email.com">
 
-                <label for="phone_pay" class="payform-group__label">
+                <label for="phonePay" class="payform-group__label">
                     <span lang="uk">Телефон</span>
                     <span lang="en">Phone</span>
                 </label>
-                <input type="phone" name="phone_pay" class="input" id="phone_pay">
+                <input type="tel" name="phonePay" class="input" id="phonePay">
 
-                <label for="question_pay" class="payform-group__label">
+                <label for="questionPay" class="payform-group__label">
                     <span lang="uk">Повідомлення</span>
                     <span lang="en">Your message</span>
                 </label>
-                <textarea class="input input_large" rows="4" name="question_pay" id="question_pay"></textarea>
+                <textarea class="input input_large" rows="4" name="questionPay" id="questionPay"></textarea>
                 <button id="pay-submit" class="btn-primary btn-primary_submit" type="submit">
                     <span lang="uk">Надіслати</span>
                     <span lang="en">Submit</span>
@@ -577,8 +577,8 @@
 
     <div class="login-modal">
         <form class="login-group" id="loginform">
-            <input type="email" name="email_login" id="email_login" class="input" required placeholder="Email">
-            <input type="password" name="password_login" id="password_login" class="input" minlength="6" required placeholder="password">
+            <input type="email" name="emailLogin" id="emailLogin" class="input" required placeholder="Email">
+            <input type="password" name="passwordLogin" id="passwordLogin" class="input" required>
             <span id="error_login"></span>
             <button id="login-submit" class="btn-primary btn-primary_submit" type="submit">
                 <span lang="uk">Увійти</span>
