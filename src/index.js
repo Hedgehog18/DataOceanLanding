@@ -25,12 +25,8 @@ $(document).ajaxError(function (e, jqXHR, ajaxSettings, thrownError) {
     }
 })
 
-$.validator.methods.email = function(value, element) {
-    return this.optional(element) || /[a-z]+@[a-z]+\.[a-z]+/.test(value);
-}
-
 $.validator.methods.text = function(value, element) {
-    return this.optional(element) || /^[a-zA-Zа-яА-ЯёЁЇїІіЄєҐґ'-. ]+$/.test(value);
+    return this.optional(element) || /^\s*[a-zA-Zа-яА-ЯёЁЇїІіЄєҐґ'`.-\s]+\s*$/.test(value);
 }
 
 $.validator.methods.tel = function(value, element) {
@@ -131,6 +127,7 @@ const getLoginSchema = () => {
             },
             passwordLogin: {
                 minlength: 8,
+                maxlength: 128,
                 required: true,
             },
         },
@@ -141,6 +138,7 @@ const getLoginSchema = () => {
             },
             passwordLogin: {
                 minlength: t('minSymbols'),
+                maxlength: t('maxSymbols'),
                 required: t('passwordRequired'),
             }
         }
@@ -218,11 +216,13 @@ const getSchema = () => {
             firstName: {
                 required: true,
                 minlength: 2,
+                maxlength: 50,
                 text: true,
             },
             lastName: {
                 required: true,
                 minlength: 2,
+                maxlength: 50,
                 text: true,
             },
             email: {
@@ -236,17 +236,20 @@ const getSchema = () => {
             },
             question: {
                 required: true,
+                maxlength: 500,
             },
         },
         messages: {
             firstName: {
                 required: t('firstNameRequired'),
                 minlength: t('minSymbols'),
+                maxlength: t('maxSymbols'),
                 text: t('dataNoCorrect'),
             },
             lastName: {
                 required: t('lastNameRequired'),
                 minlength: t('minSymbols'),
+                maxlength: t('maxSymbols'),
                 text: t('dataNoCorrect'),
             },
             email: {
@@ -260,6 +263,7 @@ const getSchema = () => {
             },
             question: {
                 required: t('questionAsk'),
+                maxlength: t('maxSymbols'),
             },
         },
     }
@@ -340,11 +344,13 @@ const getPaySchema = () => {
             firstNamePay: {
                 required: true,
                 minlength: 2,
+                maxlength: 30,
                 text: true,
             },
             lastNamePay: {
                 required: true,
                 minlength: 2,
+                maxlength: 150,
                 text: true,
             },
             emailPay: {
@@ -356,16 +362,21 @@ const getPaySchema = () => {
                 minlength: 10,
                 maxlength: 20,
             },
+            questionPay: {
+                maxlength: 500,
+            }
         },
         messages: {
             firstNamePay: {
                 required: t('firstNameRequired'),
                 minlength: t('minSymbols'),
+                maxlength: t('maxSymbols'),
                 text: t('dataNoCorrect'),
             },
             lastNamePay: {
                 required: t('lastNameRequired'),
                 minlength: t('minSymbols'),
+                maxlength: t('maxSymbols'),
                 text: t('dataNoCorrect'),
             },
             emailPay: {
@@ -377,6 +388,9 @@ const getPaySchema = () => {
                 minlength: t('minSymbols'),
                 maxlength: t('maxSymbols'),
             },
+            questionPay: {
+                maxlength: t('maxSymbols'),
+            }
         }
     }
 };
