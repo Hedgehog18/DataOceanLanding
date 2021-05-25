@@ -94,6 +94,36 @@ $(() => {
         $('#signup').hide();
     }
 
+    $('.menu .user_profile').on('mouseover', function(e) {
+        if (e.target === e.currentTarget) {
+            if ($(window).width() > 768) {
+                $('.submenu').show();
+            }
+        }
+    });
+
+    $('.menu .login .user_profile').on('mouseleave', function (e) {
+        if (e.target === e.currentTarget && e.clientY < $('.login').position().top + $('.user_profile').height()) {
+            if ($(window).width() > 768) {
+                $('.submenu').hide();
+            }
+        }
+    });
+    
+    $('.menu .login .submenu').on('mouseleave', function (e) {
+        if (e.target === e.currentTarget) {
+            if ($(window).width() > 768) {
+                $('.submenu').hide();
+            }
+        }
+    });
+
+    $('.user_profile').on('click', function () {
+        if ($(window).width() > 768) {
+            $('.submenu').toggle();
+        }
+    });
+
     $('#user-profile').on('click', function () {
         document.location = process.env.DO_FRONTEND_HOST + '/system/profile/projects/';
     });
