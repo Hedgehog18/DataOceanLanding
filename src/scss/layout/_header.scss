@@ -88,13 +88,15 @@ header {
     }
 
     .menu-icon {
-        display: block;
+        display: inline-flex;
         position: absolute;
-        width: 100px;
         // height: inherit;
         top: 1%;
         right: 0;
         line-height: 60px;
+        @media (min-width: $sm) {
+            width: 100px;
+        }
     }
 
     #menuToggle:checked ~ ul {
@@ -113,14 +115,14 @@ header {
     }
 }
 
-.user_profile:hover {
-    background: #E9F0FD;
-    padding: 10px;
-    border-radius: 6px;
-    cursor: pointer;
-
-    @media (max-width: $md) {
-        padding: 0;
+@media (min-width: $md) {
+    .login:hover {
+        .user_profile {
+            background: #E9F0FD;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
     }
 }
 
@@ -158,26 +160,35 @@ header {
         border: none;
     }
 
-    hr {
-        border: none;
-        background-color: #E6E8EE;
-        color: #E6E8EE;
-        height: 1px;
-        margin: 0%;
+    @media (min-width: $md) {
+        hr {
+            display: block;
+            border: none;
+            background-color: #E6E8EE;
+            color: #E6E8EE;
+            height: 1px;
+            margin: 0%;
+        }
     }
 }
+.arrow_icon {
+    display: inline-block;
+}
 
-// #logout {
-//     border-top: 1px solid #E6E8EE;
-// }
+@media (max-width: $md) {
+    .arrow_icon {
+        display: none;
+    }
 
-.menu li:hover .submenu {
-    display: block;
-    @media screen and (max-width: $md) {
-        display: contents;
+    hr {
+        display: none;
+    }
 
-        .submenu_item {
-            background:none;
-        }
+    .menu li .submenu {
+        display: contents !important;
+    }
+
+    .submenu_item {
+        background: none;
     }
 }
